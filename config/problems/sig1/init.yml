@@ -1,0 +1,4 @@
+notest_judge: true
+unbuffered: false
+test_cases:
+- points: 100
