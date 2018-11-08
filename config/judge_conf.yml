@@ -6,7 +6,7 @@ key: "@hDIzENaegM/BrQ1xNgG4rz3z4N1fWMxhX92VCqToSSI="
 # This directory /not/ scanned recursively, and any directory containing an init.yml file is assumed to
 # be a problem directory.
 problem_storage_root:
-  - ./config/problems
+  - /home/ubuntu/dmoj1/judge/config/problems
 #
 # All configuration for language executors
 # If you're unsure of what values a language needs, your best bet is to consult the source of the executor:
