@@ -98,6 +98,7 @@ class JavaExecutor(CompiledExecutor):
                 '-XX:+UseSerialGC', '-XX:ErrorFile=submission_jvm_crash.log', self._class_name]
 
     def launch(self, *args, **kwargs):
+        print("launch 1")
         self.__memory_limit = kwargs['memory']
         kwargs['memory'] = 0
         return super(JavaExecutor, self).launch(*args, **kwargs)

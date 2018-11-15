@@ -27,6 +27,7 @@ class Executor(ScriptDirectoryMixin, CompiledExecutor):
   (ccl::quit))'''
 
     def launch(self, *args, **kwargs):
+        print("launch 2")
         self.__memory_limit = kwargs['memory']
         return super(Executor, self).launch(*args, **kwargs)
 

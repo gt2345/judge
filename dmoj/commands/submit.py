@@ -18,7 +18,7 @@ class SubmitCommand(Command):
         self.arg_parser.add_argument('source_file', nargs='?', default=None,
                                      help='path to submission source (optional)')
         self.arg_parser.add_argument('-tl', '--time-limit', type=float, help='time limit for grading, in seconds',
-                                     default=2.0, metavar='<time limit>')
+                                     default=600.0, metavar='<time limit>')
         self.arg_parser.add_argument('-ml', '--memory-limit', type=int, help='memory limit for grading, in kilobytes',
                                      default=65536, metavar='<memory limit>')
 

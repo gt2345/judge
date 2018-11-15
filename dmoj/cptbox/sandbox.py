@@ -20,7 +20,9 @@ from dmoj.cptbox.syscalls import translator, SYSCALL_COUNT, by_id
 from dmoj.error import InternalError
 from dmoj.utils.communicate import safe_communicate as _safe_communicate
 from dmoj.utils.unicode import utf8text, utf8bytes
-
+import datetime
+import pprint
+import inspect
 PIPE = object()
 log = logging.getLogger('dmoj.cptbox')
 
@@ -205,6 +207,7 @@ class SecurePopen(six.with_metaclass(SecurePopenMeta, Process)):
         return self.returncode
 
     def poll(self):
+        print("this is 1")
         return self.returncode
 
     @property
@@ -267,25 +270,35 @@ class SecurePopen(six.with_metaclass(SecurePopenMeta, Process)):
         self._tle = True
 
     def _run_process(self):
+        print("before _run_process {}".format(datetime.datetime.now()))
+        print("before _spawn {}".format(datetime.datetime.now()))
         self._spawn(self._executable,
                     self._args,
                     self._env,
                     self._chdir,
                     self._fds)
-
+        print("after _spawn {}".format(datetime.datetime.now()))
+        print("before close files {}".format(datetime.datetime.now()))
         if self._child_stdin >= 0:
             os.close(self._child_stdin)
         if self._child_stdout >= 0:
             os.close(self._child_stdout)
         if self._child_stderr >= 0:
             os.close(self._child_stderr)
+        print("after close files {}".format(datetime.datetime.now()))
+        pprint.pprint(self.__dict__)
+        print("before start {}".format(datetime.datetime.now()))
         self._started.set()
+        print("before monitor {}".format(datetime.datetime.now()))
         code = self._monitor()
 
+        print("after monitor {}".format(datetime.datetime.now()))
         if self._time and self.execution_time > self._time:
             self._tle = True
         self._died.set()
-
+        print("after end {}".format(datetime.datetime.now()))
+        print("code = {}".format(code))
+        print("after _run_process {}".format(datetime.datetime.now()))
         return code
 
     def _shocker_thread(self):

@@ -66,6 +66,7 @@ class Executor(CExecutor):
         super(Executor, self).__init__(problem_id, code, **kwargs)
 
     def launch(self, *args, **kwargs):
+        print("launch 6")
         memory = kwargs['memory']
         # For some reason, RLIMIT_DATA is being applied to our mmap, so we have to increase the memory limit.
         kwargs['memory'] += 8192

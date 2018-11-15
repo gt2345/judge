@@ -197,6 +197,7 @@ class Judge(object):
 
                         # here be cancer
                         is_sc = (result.result_flag & Result.SC)
+
                         colored_codes = list(map(lambda x: '#ansi[%s](%s|bold)' % ('--' if x == 'SC' else x,
                                                                                    Result.COLORS_BYID[x]), codes))
                         colored_aux_codes = '{%s}' % ', '.join(colored_codes[1:]) if len(codes) > 1 else ''

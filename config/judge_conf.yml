@@ -17,13 +17,16 @@ runtime:
   awk: /usr/bin/mawk
   cat: /bin/cat
   g++: /usr/bin/g++
-  g++11: /usr/bin/g++-4.9
-  g++14: /usr/bin/g++
+  g++11: /usr/bin/g++-5
+  g++14: /usr/bin/g++-5
+  g++17: /usr/bin/g++
   gcc: /usr/bin/gcc
   gcc11: /usr/bin/gcc
+  java8: /usr/lib/jvm/java-8-openjdk-amd64/bin/java
+  javac8: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
   ld_x64: /usr/bin/x86_64-linux-gnu-ld
   ld_x86: /usr/bin/ld
   perl: /usr/bin/perl
   python: /usr/bin/python2.7
-  python3: /usr/bin/python3.4
+  python3: /usr/bin/python3.5
   sed: /bin/sed

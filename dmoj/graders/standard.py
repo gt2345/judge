@@ -5,6 +5,9 @@ import logging
 import os
 import platform
 import signal
+import datetime
+import inspect
+import pprint
 
 import six
 
@@ -31,15 +34,20 @@ class StandardGrader(BaseGrader):
         result = Result(case)
 
         input = case.input_data()  # cache generator data
-
+        print("before launch {}".format(datetime.datetime.now()))
+        #print(inspect.getsource(self.binary.launch))
         self._current_proc = self.binary.launch(time=self.problem.time_limit, memory=self.problem.memory_limit,
                                                 pipe_stderr=True, io_redirects=case.io_redirects(),
                                                 wall_time=case.config.wall_time_factor * self.problem.time_limit)
-
+        print("self._current_proc = {}".format(self._current_proc))
+        #pprint.pprint(self._current_proc.__dict__)
+        print("after launch {}".format(datetime.datetime.now()))
+        print("before interact {}".format(datetime.datetime.now()))
         error = self._interact_with_process(case, result, input)
+        print("after interact {}".format(datetime.datetime.now()))
 
         process = self._current_proc
-
+        print("process = {}".format(process))
         result.max_memory = process.max_memory or 0.0
         result.execution_time = process.execution_time or 0.0
         result.r_execution_time = process.r_execution_time or 0.0
@@ -141,9 +149,12 @@ class StandardGrader(BaseGrader):
 
     def _interact_with_process(self, case, result, input):
         process = self._current_proc
+        print("process in _interact_with_process = {}".format(process))
         try:
+            print("before safe_communicate {}".format(datetime.datetime.now()))
             result.proc_output, error = process.safe_communicate(input, outlimit=case.config.output_limit_length,
                                                                  errlimit=1048576)
+            print("after safe_communicate {}".format(datetime.datetime.now()))
         except OutputLimitExceeded as ole:
             stream, result.proc_output, error = ole.args
             log.warning('OLE on stream: %s', stream)

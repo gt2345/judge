@@ -1,0 +1,3 @@
+test_cases:
+- {in: pythontest.1.in, out: pythontest.1.out, points: 5}
+- {in: pythontest.2.in, out: pythontest.2.out, points: 20}

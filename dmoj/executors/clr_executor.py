@@ -49,6 +49,7 @@ class CLRProcess(object):
             CloseHandle(self._port)
 
     def _monitor(self):
+        print("inside monitor")
         code = DWORD()
         key = c_void_p()
         overlapped = OVERLAPPED()
@@ -166,6 +167,7 @@ class CLRProcess(object):
         return self.poll()
 
     def poll(self):
+        print("this is 3")
         if self.returncode is None:
             self.returncode = GetExitCodeProcess(self._process)
         return self.returncode
@@ -223,6 +225,7 @@ class CLRExecutor(CompiledExecutor):
                                                      for arg in self.compile_args]
 
     def launch(self, *args, **kwargs):
+        print("launch 3")
         return CLRProcess(self.get_executable(), self._dir, kwargs.get('time'), kwargs.get('memory'))
 
     def launch_unsafe(self, *args, **kwargs):

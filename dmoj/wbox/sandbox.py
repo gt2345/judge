@@ -75,6 +75,7 @@ class WBoxPopen(object):
         return self.poll()
 
     def poll(self):
+        print("this is 2")
         self.returncode = self.process.get_exit_code()
         if self.returncode is not None and self.network_block is not None:
             self.network_block.dispose()

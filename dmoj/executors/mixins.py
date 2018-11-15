@@ -39,6 +39,7 @@ try:
                 return self.inject_func
 
             def launch(self, *args, **kwargs):
+                print("launch 4")
                 return WBoxPopen(self.get_cmdline() + list(args),
                                  time=kwargs.get('time'), memory=kwargs.get('memory'),
                                  cwd=self._dir, executable=self.get_executable(),
@@ -114,6 +115,7 @@ try:
                 return env
 
             def launch(self, *args, **kwargs):
+                print("launch 5")
                 agent = self._file('setbufsize.so')
                 shutil.copyfile(setbufsize_path, agent)
                 env = {

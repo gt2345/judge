@@ -1,4 +1,4 @@
-notest_judge: true
-unbuffered: false
+custom_judge: interactor.py
+unbuffered: true
 test_cases:
 - points: 100
